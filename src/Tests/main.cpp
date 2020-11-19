@@ -3,10 +3,15 @@
 #include "../Boost_Test_example/restricted_list.h"
 
 
-BOOST_AUTO_TEST_CASE(my_boost_test)
+BOOST_AUTO_TEST_CASE(constructors_test)
 {
-	RestrictedList<float> l;
+	BOOST_CHECK_NO_THROW(RestrictedList<char>());
+	BOOST_CHECK_NO_THROW(RestrictedList<int>());
+	BOOST_CHECK_NO_THROW(RestrictedList<double>());
 
-	int a = 2 + 2;
-	BOOST_CHECK(a= 4);
+	BOOST_CHECK_NO_THROW(RestrictedList<int>(4, 4));
+	BOOST_CHECK_NO_THROW(RestrictedList<float>(2.f, 4.f));
+
+	BOOST_CHECK_THROW(RestrictedList<int>(123, 4), std::exception);
+	BOOST_CHECK_THROW(RestrictedList<float>(4.f, 1.f), std::exception);
 }
